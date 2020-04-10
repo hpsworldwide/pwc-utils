@@ -11,7 +11,7 @@ import org.apache.commons.io.HexDump;
  *
  * @author (c) Mobitrans / PowerCARD-Mobile team, HPS Solutions
  */
-public class ByteArrayUtil {
+public class ByteArrayUtils {
 
     /**
      * result is upper case

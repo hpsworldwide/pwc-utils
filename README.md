@@ -2,7 +2,13 @@
 
 # PowerCARD Utils
 
-### Java 8 Utils 
+### Getting started
+```
+> git clone https://github.com/hpsworldwide/pwc-utils.git
+> cd pwc-utils
+> mvn package
+```
+### PowerCARD Java 8-based utils 
 
 * [Common Utils](./src/main/java/com/hpsworldwide/powercard/utils)
     * [ByteArrayUtils](./src/main/java/com/hpsworldwide/powercard/utils/ByteArrayUtil.java) : Various useful functions working on byte arrays

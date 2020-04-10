@@ -1,6 +1,6 @@
 package com.hpsworldwide.powercard.utils.socket;
 
-import com.hpsworldwide.powercard.utils.ByteArrayUtil;
+import com.hpsworldwide.powercard.utils.ByteArrayUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ public class SslSocketClientTest {
             File requestFile = new File(REQUEST_FILE_PATH);
             long lRequestFileLength = requestFile.length();
             LOG.info("request file length: " + lRequestFileLength + " bytes");
-            byte[] baOutputFileLength = ByteArrayUtil.integerToByteArray((int) lRequestFileLength);
+            byte[] baOutputFileLength = ByteArrayUtils.integerToByteArray((int) lRequestFileLength);
             outputStream.write(baOutputFileLength);
             try (FileInputStream requestFileInputStream = new FileInputStream(requestFile)) {
                 IOUtils.copy(requestFileInputStream, outputStream);
@@ -40,8 +40,8 @@ public class SslSocketClientTest {
             final int HEADER_LENGTH = 4;
             byte[] baResponseFileLength = new byte[HEADER_LENGTH];
             inputStream.read(baResponseFileLength, 0, HEADER_LENGTH);
-            LOG.info("read response file length: 0x" + ByteArrayUtil.toHexString(baResponseFileLength));
-            int inputFileLength = ByteArrayUtil.byteArrayToInteger(baResponseFileLength);
+            LOG.info("read response file length: 0x" + ByteArrayUtils.toHexString(baResponseFileLength));
+            int inputFileLength = ByteArrayUtils.byteArrayToInteger(baResponseFileLength);
             LOG.info("response file length: " + inputFileLength + " bytes; reading response file...");
             byte[] responseData = new byte[inputFileLength];
             inputStream.read(responseData, 0, inputFileLength);

@@ -23,7 +23,7 @@ public class OperationReferenceManager {
     }
 
     public static String toBase32(long l) {
-        return BASE_32.encodeAsString(ByteArrayUtil.longToByteArray(l)).replaceAll("=", "");
+        return BASE_32.encodeAsString(ByteArrayUtils.longToByteArray(l)).replaceAll("=", "");
     }
 
 }

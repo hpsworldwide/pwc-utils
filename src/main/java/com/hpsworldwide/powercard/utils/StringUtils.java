@@ -5,7 +5,7 @@ import java.text.ParseException;
 /**
  * @author (c) HPS Solutions
  */
-public class StringUtil {
+public class StringUtils {
 
     /**
      * transforms "0123456789ABCDEF" in byte[]{0x01, 0x23, 0x45, 0x67, 0x89,

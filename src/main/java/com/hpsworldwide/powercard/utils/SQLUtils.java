@@ -17,7 +17,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 
-public class SQL_Utils {
+public class SQLUtils {
 
     /**
      * also allows to check Connection is valid<br />

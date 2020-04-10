@@ -1,6 +1,6 @@
 package com.hpsworldwide.powercard.utils.socket;
 
-import com.hpsworldwide.powercard.utils.ByteArrayUtil;
+import com.hpsworldwide.powercard.utils.ByteArrayUtils;
 import com.hpsworldwide.powercard.utils.OperationReferenceManager;
 
 import java.io.IOException;
@@ -25,15 +25,15 @@ public class TestSocketListener implements ISocketListener {
         final int HEADER_LENGTH = 4;
         byte[] baRequestFileLength = new byte[HEADER_LENGTH];
         inputStream.read(baRequestFileLength, 0, HEADER_LENGTH);
-        LOG.info("read request file length: 0x" + ByteArrayUtil.toHexString(baRequestFileLength));
-        int requestFileLength = ByteArrayUtil.byteArrayToInteger(baRequestFileLength);
+        LOG.info("read request file length: 0x" + ByteArrayUtils.toHexString(baRequestFileLength));
+        int requestFileLength = ByteArrayUtils.byteArrayToInteger(baRequestFileLength);
         LOG.info("request file length: " + requestFileLength + " bytes; reading file...");
         byte[] requestData = new byte[requestFileLength];
         inputStream.read(requestData, 0, requestFileLength);
         LOG.info("request file read\nfile content:\n" + new String(requestData));
         LOG.info("writing response...");
         byte[] responseData = ("ok for " + requestFileLength + " bytes").getBytes();
-        outputStream.write(ByteArrayUtil.integerToByteArray(responseData.length));
+        outputStream.write(ByteArrayUtils.integerToByteArray(responseData.length));
         outputStream.write(responseData, 0, responseData.length);
         LOG.info("response written ; closing socket " + OperationReferenceManager.toBase32(socketId) + "...");
         sslSocketServer.closeSocket(socketId);
