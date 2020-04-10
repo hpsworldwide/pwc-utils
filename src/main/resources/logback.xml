@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- logback configuration file - PowerCARD-Mobile team, HPS Solutions, HPS (Hightech Payment Systems) -->
+<!-- for help on configuring this file, see http://logback.qos.ch/manual/configuration.html or http://fr.slideshare.net/SunithaRaghurajan/sl4f -->
+<!-- inspired from http://blog.xebia.fr/2010/07/07/java-en-production-les-fichiers-de-logs/ (Apache License 2) -->
+<!-- version 0.9 -->
+<configuration scan="true">
+    <property name="APPLICATION_NAME" value="ISO_20022" />
+    <property name="LOGS_FOLDER" value="${catalina.base:-.}/logs" />
+    <property name="LOGS_TO_COLLECT_FOLDER" value="${catalina.base:-.}/logs-to-collect" />
+
+    <!-- logs in file, new file daily or whenever the file size reaches 100MB, for WAR + ERROR levels -->
+    <appender name="log-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_FOLDER}/${APPLICATION_NAME}.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- let pass WARN & ERROR levels only -->
+            <level>WARN</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOGS_TO_COLLECT_FOLDER}/${APPLICATION_NAME}.%d{yyyyMMdd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m %throwable{1}%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- logs in file, new file daily (max 10 MB size), all levels -->
+    <appender name="troubleshooting-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_FOLDER}/${APPLICATION_NAME}-troubleshooting.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOGS_TO_COLLECT_FOLDER}/${APPLICATION_NAME}-troubleshooting.%d{yyyyMMdd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{36} - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- for logs viewer application (Lilith) -->
+    <appender name="viewer-file" class="ch.qos.logback.core.FileAppender">
+        <!-- don't forget to add de.huxhorn.lilith.logback.encoder.classic as runtime dependency in pom.xml -->
+        <file>${LOGS_FOLDER}/${APPLICATION_NAME}-viewer_logs.lilith</file>
+        <encoder class="de.huxhorn.lilith.logback.encoder.ClassicLilithEncoder">
+            <IncludeCallerData>true</IncludeCallerData>
+        </encoder>
+    </appender>
+
+    <!-- logs in console -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- for development use only -->
+        <!--filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter-->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root><!-- for development: DEBUG; for production: INFO -->
+        <appender-ref ref="log-file" />
+        <appender-ref ref="troubleshooting-file" />
+        <appender-ref ref="viewer-file" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

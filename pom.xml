@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hpsworldwide.powercard</groupId>
+    <artifactId>pwc-utils</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.1</version>
+    <name>PowerCARD Utils</name>
+    <url>http://www.hps-worldwide.com/</url>
+    <dependencies>
+        <dependency>
+            <!-- Base32 management, DigestUtils -->
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- DateFormat management, StringEscapeUtils, ExceptionUtils, DurationFormatUtils, Pair -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- HexDump -->
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- for XPath injection, TODO : once chosen between dom4j & JDOM2, remove the useless one -->
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- for XPath injection, TODO : once chosen between dom4j & JDOM2, remove the useless one -->
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>2.0.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <!-- log management -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+            <type>jar</type>
+        </dependency>
+        
+        <!-- TODO : remove logback + lilith before production, must be present only in main WAR -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.1.7</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <!-- for viewer event application -->
+            <groupId>de.huxhorn.lilith</groupId>
+            <artifactId>de.huxhorn.lilith.logback.encoder.classic</artifactId>
+            <version>0.9.44</version><!-- note: version 8.0.0 requires Java8 -->
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+</project>
