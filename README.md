@@ -1,14 +1,15 @@
-![logo](https://www.hps-worldwide.com/sites/default/files/logo_hps_0.png)
+<img src="https://www.hps-worldwide.com/sites/default/files/logo_hps_0.png" width="40%">
 
 # PowerCARD Utils
 
-### Getting started
+## Getting started
 ```
 > git clone https://github.com/hpsworldwide/pwc-utils.git
 > cd pwc-utils
 > mvn package
 ```
-### PowerCARD Java 8-based utils 
+
+## PowerCARD Java 8-based utils 
 
 * [Common Utils](./src/main/java/com/hpsworldwide/powercard/utils)
     * [ByteArrayUtils](./src/main/java/com/hpsworldwide/powercard/utils/ByteArrayUtil.java) : Various useful functions working on byte arrays
@@ -30,3 +31,14 @@
    * [XML Injection](./src/main/java/com/hpsworldwide/powercard/utils/xml/inject) : XML parsing functions (using XPath) to inject data in an XML Tree
 
 * [ZIP Utils](./src/main/java/com/hpsworldwide/powercard/utils/zip) : ZIP functions that compress / uncompress data in a stream based on byte arrays
+
+## Contributions
+
+We welcome code contributions through pull requests. 
+Please join our contributors community and help us make this library even better!
+
+## License
+
+This Java library is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+(c) All rights reserved HPS Worldwide
